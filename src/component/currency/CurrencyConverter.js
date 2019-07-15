@@ -4,7 +4,10 @@ class CurrencyConverter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currencies: []
+            currencies: [],
+            value: 1,
+            currencyFrom : null,
+            currencyTo : null
         }
     }
 //chargement du composant
@@ -18,6 +21,16 @@ class CurrencyConverter extends Component {
             });
     }
 
+    handleChange(event){
+        this.setState({
+            [event.target.name]:event.target.value
+        });
+    }
+
+    handleSubmit(event){
+        event.preventDefault();// annule le comportement par défaut.
+    }
+
 
     render() {
 
@@ -26,12 +39,12 @@ class CurrencyConverter extends Component {
         );
 
         return (
-            <form>
-                <input type="number"/>
-                <select>
+            <form onSubmit={event => this.handleSubmit(event)}>
+                <input type="number" name="value" value={this.state.value} onChange={event => this.handleChange(event)}/>
+                <select name="currencyFrom" onChange={event => this.handleChange(event)}>
                     {currencyOptions}
                 </select>
-                <select>
+                <select name="currencyTo" onChange={event => this.handleChange(event)}>
                     {currencyOptions}
                 </select>
                 <input type="submit"/>
