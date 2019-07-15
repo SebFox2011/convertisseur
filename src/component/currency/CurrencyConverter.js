@@ -7,7 +7,7 @@ class CurrencyConverter extends Component {
 
         }
     }
-
+//chargement du composant
     componentDidMount() {
         fetch('https://api.exchangeratesapi.io/latest')
             .then(response => response.json ())
