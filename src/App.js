@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import CurrencyConverter from "./components/currency/CurrencyConverter";
+import CurrencyConverter from "./component/currency/CurrencyConverter";
 
 function App() {
   return (
