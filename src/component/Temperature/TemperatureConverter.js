@@ -16,8 +16,15 @@ class TemperatureConverter extends Component {
     };
 
     handleChange(event) {
+        let result=0;
+        if (this.state.tempFrom === "C"){
+            if (this.state.tempTo === "F"){
+                result=(this.state.value * 9 / 5) + 32;
+            }
+        }
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
+            result:result
         });
     }
 
@@ -45,6 +52,7 @@ class TemperatureConverter extends Component {
                         {tempOptionsTo}
                     </div>
                 </form>
+                <p>{this.state.result}</p>
             </React.Fragment>
         );
     }
