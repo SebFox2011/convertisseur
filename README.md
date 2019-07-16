@@ -69,3 +69,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Pour enlever .idea/ de git
 git rm --cached -r .idea/
+
+## API exchange
+https://exchangeratesapi.io/

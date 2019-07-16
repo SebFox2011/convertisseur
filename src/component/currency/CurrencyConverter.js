@@ -17,7 +17,13 @@ class CurrencyConverter extends Component {
             .then(data =>{
                let currencies = Object.keys(data.rates);
                currencies.push(data.base);
-               this.setState({currencies:currencies.sort()});
+                currencies.sort();
+               this.setState({
+                   currencies:currencies,
+                   currencyFrom:currencies[0],
+                   currencyTo:currencies[0],
+                   result:null
+               });
             });
     }
 
@@ -27,10 +33,15 @@ class CurrencyConverter extends Component {
         });
     }
 
-    handleSubmit(event){
+    handleSubmit(event){ //Au clic sur le bouton
         event.preventDefault();// annule le comportement par défaut.
+        fetch('https://api.exchangeratesapi.io/latest?base=' + this.state.currencyFrom)
+            .then(response => response.json())
+            .then(data => {
+                const result=data.rates[this.state.currencyTo] * this.state.value;
+                this.setState({result:result})
+            });
     }
-
 
     render() {
 
@@ -38,17 +49,26 @@ class CurrencyConverter extends Component {
             currency => <option key={currency} value={currency}>{currency}</option>
         );
 
+        const formStyle ={
+            display:'flex',
+            justifyContent:'center',
+            flexDirection:this.props.layout
+        };
+
         return (
-            <form onSubmit={event => this.handleSubmit(event)}>
-                <input type="number" name="value" value={this.state.value} onChange={event => this.handleChange(event)}/>
-                <select name="currencyFrom" onChange={event => this.handleChange(event)}>
-                    {currencyOptions}
-                </select>
-                <select name="currencyTo" onChange={event => this.handleChange(event)}>
-                    {currencyOptions}
-                </select>
-                <input type="submit"/>
-            </form>
+            <React.Fragment>
+                <form onSubmit={event => this.handleSubmit(event)} style={formStyle}>
+                    <input type="number" name="value" value={this.state.value} onChange={event => this.handleChange(event)}/>
+                    <select name="currencyFrom" onChange={event => this.handleChange(event)}>
+                        {currencyOptions}
+                    </select>
+                    <select name="currencyTo" onChange={event => this.handleChange(event)}>
+                        {currencyOptions}
+                    </select>
+                    <input type="submit"/>
+                </form>
+                <p>{this.state.result}</p>
+            </React.Fragment>
         );
     }
 }
