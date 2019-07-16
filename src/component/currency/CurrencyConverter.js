@@ -49,6 +49,7 @@ class CurrencyConverter extends Component {
             currency => <option key={currency} value={currency}>{currency}</option>
         );
 
+        const result = this.state.result ? <p>{this.state.result}</p> : null;
         const formStyle ={
             display:'flex',
             justifyContent:'center',
@@ -67,7 +68,8 @@ class CurrencyConverter extends Component {
                     </select>
                     <input type="submit"/>
                 </form>
-                <p>{this.state.result}</p>
+                {result}
+
             </React.Fragment>
         );
     }
