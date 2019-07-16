@@ -33,7 +33,7 @@ class TemperatureConverter extends Component {
         return (
             <React.Fragment>
                 <form>
-                    <input type="text" name="value" value={this.state.value} onChange={event => this.handleChange(event)}/>
+                    <input type="number" step={0.5} name="value" value={this.state.value} onChange={event => this.handleChange(event)}/>
 
                 <div>
                     {tempOptionsFrom}
