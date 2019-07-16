@@ -4,24 +4,22 @@ class TextToUpper extends Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
         this.state = {
-            value : ''
-        }
-    };
+            text: ''
+        };
+    }
 
-    handleChange(event){
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    };
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
 
     render() {
         return (
-            <React.Fragment>
-                <input type="text" name="value" value={this.state.value} onChange={this.handleChange} />
-                {this.state.value.toUpperCase()}
-            </React.Fragment>
+            <div>
+                <h2>TextToUpper</h2>
+                <input type="text" name="text" value={this.state.text} onChange={event => this.handleChange(event)}/>
+                {this.state.text.toUpperCase()}
+            </div>
         );
     }
 }
