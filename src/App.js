@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-import CurrencyConverter from "./component/currency/CurrencyConverter";
+import CurrencyConverter from "./component/Currency/CurrencyConverter";
 import TemperatureConverter from "./component/Temperature/TemperatureConverter"
+import TextToUpper from "./component/TextToUpper/TextToUpper";
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
         <CurrencyConverter layout={'row'}/>
         <h1>Temp Converter</h1>
           <TemperatureConverter/>
+          <h1>TextToUpper</h1>
+          <TextToUpper/>
       </div>
   );
 }
