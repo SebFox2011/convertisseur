@@ -16,16 +16,23 @@ class TemperatureConverter extends Component {
     };
 
     handleChange(event) {
-        let result=0;
-        if (this.state.tempFrom === "C"){
-            if (this.state.tempTo === "F"){
-                result=(this.state.value * 9 / 5) + 32;
-            }
-        }
         this.setState({
-            [event.target.name]: event.target.value,
-            result:result
-        });
+            [event.target.name]: event.target.value
+        },
+            () =>{
+            let result=0;
+            if (this.state.tempFrom === "C"){
+                if (this.state.tempTo === "F"){
+                    result=(this.state.value * 9 / 5) + 32;
+                }
+            }
+            this.setState({
+                result:result
+            });
+            }
+        );
+
+
     }
 
     render() {
