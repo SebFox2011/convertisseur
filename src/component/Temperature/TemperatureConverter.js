@@ -16,23 +16,31 @@ class TemperatureConverter extends Component {
     };
 
     handleChange(event){
-        //this.setState([event.target.name]:event.target.value)
-    };
+        this.setState({
+            [event.target.name]:event.target.value
+        });
+    }
 
     render() {
 
-        const tempOptions = units.map(unit =>
-            <InputRadio>
+        const tempOptionsFrom = units.map(unit =>
+            <InputRadio key={unit} id={"temp-from-"+unit} label={unit} name={"temp-from"} checked={this.state.tempFrom === unit}/>
+        );
+
+        const tempOptionsTo = units.map(unit =>
+            <InputRadio key={unit} id={"temp-to-"+unit} label={unit} name={"temp-to"} checked={this.state.tempTo === unit}/>
         );
         return (
             <React.Fragment>
                 <form>
                     <input type="text" name="value" value={this.state.value} onChange={event => this.handleChange(event)}/>
-                    =
-                    <input type="text"/>
-                </form>
-                <form>
-                    {tempOptions}
+
+                <div>
+                    {tempOptionsFrom}
+                </div>
+                <div>
+                    {tempOptionsTo}
+                </div>
                 </form>
             </React.Fragment>
         );
